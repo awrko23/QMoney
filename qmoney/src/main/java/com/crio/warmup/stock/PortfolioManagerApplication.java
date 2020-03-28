@@ -1,4 +1,3 @@
-
 package com.crio.warmup.stock;
 
 import com.crio.warmup.stock.dto.AnnualizedReturn;
@@ -237,4 +236,3 @@ public class PortfolioManagerApplication {
 
   }
 }
-
