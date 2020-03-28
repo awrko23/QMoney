@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PortfolioManagerApplicationTest {
-  /*
+
   @Test
   void mainReadFile() throws Exception {
     //given
@@ -18,12 +18,12 @@ class PortfolioManagerApplicationTest {
     List<String> expected = Arrays.asList(new String[]{"AAPL", "MSFT", "GOOGL"});
 
     //when
-    List<String> results = PortfolioManagerApplication.mainReadFile(new String[]{filename});
+    List<String> results = PortfolioManagerApplication
+        .mainReadFile(new String[]{filename});
 
     //then
     Assertions.assertEquals(expected, results);
   }
-  */
 
 
   @Test
@@ -41,13 +41,11 @@ class PortfolioManagerApplicationTest {
   }
 
 
-  /*
   @Test
   public void testDebugValues() {
     List<String> responses = PortfolioManagerApplication.debugOutputs();
     Assertions.assertTrue(responses.get(0).contains("trades.json"));
   }
-  */
 
 }
 

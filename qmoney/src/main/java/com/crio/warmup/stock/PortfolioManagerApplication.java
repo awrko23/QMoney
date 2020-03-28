@@ -20,6 +20,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 import org.apache.logging.log4j.ThreadContext;
 
+
 public class PortfolioManagerApplication {
 
   // TODO: CRIO_TASK_MODULE_JSON_PARSING
@@ -118,7 +119,9 @@ public class PortfolioManagerApplication {
       lineNumberFromTestFileInStackTrace
     });
   }
+}
 */
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -160,6 +163,17 @@ public class PortfolioManagerApplication {
   //   ./gradlew run --args="trades.json 2019-07-01"
   //   ./gradlew run --args="trades.json 2019-12-03"
   //  And make sure that its printing correct results.
+
+  public static List<String> mainReadFile(String[] args) throws IOException, URISyntaxException {
+    ObjectMapper objmap = getObjectMapper();
+    PortfolioTrade[] obj = objmap.readValue(
+        resolveFileFromResources(args[0]), PortfolioTrade[].class);
+    List<String> lst = new ArrayList<String>();
+    for (int i = 0; i < obj.length; i++) {
+      lst.add(obj[i].getSymbol());
+    }
+    return lst;
+  }
 
   public static List<String> mainReadQuotes(String[] args) throws IOException, URISyntaxException {
     ObjectMapper objmap = getObjectMapper();
@@ -224,6 +238,24 @@ public class PortfolioManagerApplication {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new JavaTimeModule());
     return objectMapper;
+  }
+
+  public static List<String> debugOutputs() {
+    String valueOfArgument0 =
+        "trades.json";
+    String resultOfResolveFilePathArgs0 =
+        "/home/crio-user/workspace/arkasengupta23-ME_QMONEY/qmoney/bin/main/trades.json";
+    String toStringOfObjectMapper = "com.fasterxml.jackson.databind.ObjectMapper@6d9f7a80";
+    String functionNameFromTestFileInStackTrace = "mainReadFile";
+    String lineNumberFromTestFileInStackTrace = "22";
+
+    return Arrays.asList(new String[] {
+      valueOfArgument0,
+      resultOfResolveFilePathArgs0,
+      toStringOfObjectMapper,
+      functionNameFromTestFileInStackTrace,
+      lineNumberFromTestFileInStackTrace
+    });
   }
 
   public static void main(String[] args) throws Exception {
