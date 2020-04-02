@@ -117,6 +117,11 @@ public class PortfolioManagerImpl implements PortfolioManager {
           int k = 0;
           while (!stocklist.get(k).getDate().isEqual(endDate)) {
             k++;
+            if(k >= stocklist.size()) {
+              --k;
+              endDate = endDate.minusDays(1);
+              break;
+            }
           }
           sellPrice = stocklist.get(k).getClose();
           int x = 0;
