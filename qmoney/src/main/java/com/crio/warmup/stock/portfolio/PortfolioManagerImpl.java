@@ -107,7 +107,7 @@ public class PortfolioManagerImpl implements PortfolioManager {
         Double sellPrice, buyPrice;
         List<AnnualizedReturn> annulist = new ArrayList<AnnualizedReturn>(portfolioTrades.size());
         for(int i = 0; i < portfolioTrades.size(); i++) {
-          List<Candle> stocklist = null;
+          List<Candle> stocklist = Collections.emptyList();
           try {
             stocklist = getStockQuote(portfolioTrades.get(i).getSymbol(), portfolioTrades.get(i).getPurchaseDate(),
                 endDate);
