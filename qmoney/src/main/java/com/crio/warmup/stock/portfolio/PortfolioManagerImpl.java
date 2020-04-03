@@ -36,6 +36,7 @@ public class PortfolioManagerImpl implements PortfolioManager {
 
   // Caution: Do not delete or modify the constructor, or else your build will
   // break!
+  // Caution: Do not delete or modify the constructor, or else your build will break!
   // This is absolutely necessary for backward compatibility
   protected PortfolioManagerImpl(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
@@ -57,6 +58,7 @@ public class PortfolioManagerImpl implements PortfolioManager {
   // the tests and static code quality pass.
 
   //CHECKSTYLE:OFF
+
 
 
 
@@ -101,11 +103,17 @@ public class PortfolioManagerImpl implements PortfolioManager {
   }
 
   public List<AnnualizedReturn> calculateAnnualizedReturn(List<PortfolioTrade> portfolioTrades,
-      LocalDate endDate) throws JsonProcessingException {
+      LocalDate endDate) {
         Double sellPrice, buyPrice;
         List<AnnualizedReturn> annulist = new ArrayList<AnnualizedReturn>(portfolioTrades.size());
         for(int i = 0; i < portfolioTrades.size(); i++) {
-          List<Candle> stocklist = getStockQuote(portfolioTrades.get(i).getSymbol(), portfolioTrades.get(i).getPurchaseDate(), endDate);
+          List<Candle> stocklist = null;
+          try {
+            stocklist = getStockQuote(portfolioTrades.get(i).getSymbol(), portfolioTrades.get(i).getPurchaseDate(),
+                endDate);
+          } catch (JsonProcessingException e) { 
+              e.printStackTrace();
+          } 
           if (endDate.getMonth().getValue() == 1 && endDate.getDayOfMonth() == 1) {
             endDate = endDate.minusDays(1);
           }
@@ -138,4 +146,7 @@ public class PortfolioManagerImpl implements PortfolioManager {
         Collections.sort(annulist, getComparator());
         return annulist;
   }
+
+
+
 }
